@@ -3,10 +3,10 @@
 
 Dungeon::Dungeon(unsigned int n, unsigned int m) 
 {
-    this->layout = new Room** [n];
+    this->layout.reset( new std::unique_ptr< std::unique_ptr<Room>[] >[n]);
     
     for ( unsigned int i = 0; i < n; i++ )
-        layout[i] = new Room* [m];
+        layout[i].reset( new std::unique_ptr<Room>[m]);
     
     for ( unsigned int i = 0; i < n; i++ ) 
     {
@@ -17,7 +17,7 @@ Dungeon::Dungeon(unsigned int n, unsigned int m)
     }
     
     this->height = n; // The FIRST coordinate, row id
-    this->width = m;  // The SECOND coordinate, column id
+    this->width = m;  // The SECOND coordinate, column id, x
     // See buildRoom() in SampleBuilder class
 }
 
@@ -32,9 +32,7 @@ unsigned int Dungeon::getHeight() { return this->height; }
 
 unsigned int Dungeon::getWidth() { return this->width; }
 
-Room*** Dungeon::getLayout() { return this->layout; }
-
-Room* Dungeon::getElem(int y, int x) { return this->layout[x][y]; }
+RoomGrid& Dungeon::getLayout() { return layout; }
 
 void Dungeon::setEntrance(int y, int x)
 {
