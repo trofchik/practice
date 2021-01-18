@@ -1,6 +1,5 @@
 
 #pragma once
-#include <Party.hh>
 #include <Loot.hh>
 #include <variant>
 #include <iostream>
