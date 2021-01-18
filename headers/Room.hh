@@ -3,7 +3,7 @@
 #include <variant>
 #include <iostream>
 
-using ContentType = std::variant<Loot, Party>;
+using ContentType = std::variant<Party>;
 using HVector = std::vector<ContentType>;
 
 class Room
