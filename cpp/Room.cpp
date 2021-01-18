@@ -7,8 +7,3 @@
 Room::Room() {}
 
 Room::~Room() {};
-
-void Room::sortContByPriority()
-{
-    
-}
